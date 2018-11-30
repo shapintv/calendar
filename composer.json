@@ -7,8 +7,7 @@
         }
     ],
     "require": {
-        "sabre/vobject": "^4.0",
-        "symfony/config": "^4.1"
+        "sabre/vobject": "^4.0"
     },
     "autoload": {
         "psr-4": {

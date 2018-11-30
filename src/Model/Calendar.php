@@ -31,7 +31,7 @@ class Calendar
      *
      * @see https://tools.ietf.org/html/rfc5545#section-3.7.1
      */
-    private $calendarScale;
+    private $scale = 'GREGORIAN';
 
     /**
      * Property Name: METHOD
@@ -45,32 +45,76 @@ class Calendar
      *
      * @see https://tools.ietf.org/html/rfc5545#section-3.6.5
      */
-    private $timezones;
+    private $timezones = [];
 
     /**
      * Property Name: VEVENT
      *
      * @see https://tools.ietf.org/html/rfc5545#section-3.6.1
      */
-    private $events;
+    private $events = [];
 
-    private function __construct()
+    public function __construct(string $productIdentifier, string $version)
     {
+        $this->productIdentifier = $productIdentifier;
+        $this->version = $version;
     }
 
-    public static function createFromArray(array $data): self
-    {
-        $processor = new Processor();
-        $data = $processor->processConfiguration(new CalendarConfiguration(), [$data]);
-
-        $calendar = new self();
-        $calendar->productIdentifier = $data['product_identifier'];
-
-        return $calendar;
-    }
-
-    public function getProductIdentifier()
+    public function getProductIdentifier(): string
     {
         return $this->productIdentifier;
+    }
+
+    public function getVersion(): string
+    {
+        return $this->version;
+    }
+
+    public function getScale(): string
+    {
+        return $this->scale;
+    }
+
+    public function setScale(string $scale): self
+    {
+        $this->scale = $scale;
+
+        return $this;
+    }
+
+    public function getMethod(): ?string
+    {
+        return $this->method;
+    }
+
+    public function setMethod(string $method): self
+    {
+        $this->method = $method;
+
+        return $this;
+    }
+
+    public function addTimezone(Timezone $timezone): self
+    {
+        $this->timezones[] = $timezone;
+
+        return $this;
+    }
+
+    public function getTimezones(): array
+    {
+        return $this->timezones;
+    }
+
+    public function addEvent(Event $event): self
+    {
+        $this->events[] = $event;
+
+        return $this;
+    }
+
+    public function getEvents(): array
+    {
+        return $this->events;
     }
 }

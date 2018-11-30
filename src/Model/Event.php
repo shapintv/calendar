@@ -12,7 +12,7 @@ class Event
     /**
      * Property Name: UID
      */
-    private $uniqId;
+    private $uid;
 
     /**
      * Property Name: DTSTAMP
@@ -34,11 +34,13 @@ class Event
      */
     private $summary;
 
-    public static function createFromArray(array $data): self
+    public function __construct(string $uid)
     {
-        $event = new self();
-        $event->uniqId = $data['uid'];
+        $this->uid = $uid;
+    }
 
-        return $event;
+    public function getUid(): string
+    {
+        return $this->uid;
     }
 }
