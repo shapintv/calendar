@@ -1,9 +1,12 @@
 {
-    "name": "bab/ical",
+    "name": "shapin/calendar",
+    "description": "Calendar related tools.",
+    "license": "MIT",
+    "keywords": ["calendar", "ics"],
     "authors": [
         {
-            "name": "Olivier Dolbeau",
-            "email": "git@a.bbnt.me"
+            "name": "Olivier Dolbeaua",
+            "email": "olivier@bbnt.me"
         }
     ],
     "require": {
