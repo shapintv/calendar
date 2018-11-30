@@ -10,27 +10,27 @@ namespace Shapin\Calendar\Model;
 class Event
 {
     /**
-     * Property Name: UID
+     * Property Name: UID.
      */
     private $uid;
 
     /**
-     * Property Name: DTSTAMP
+     * Property Name: DTSTAMP.
      */
     private $createdAt;
 
     /**
-     * Property Name: DTSTART
+     * Property Name: DTSTART.
      */
     private $startAt;
 
     /**
-     * Property Name: DTEND
+     * Property Name: DTEND.
      */
     private $endAt;
 
     /**
-     * Property Name: SUMMARY
+     * Property Name: SUMMARY.
      */
     private $summary;
 

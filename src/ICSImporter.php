@@ -13,7 +13,7 @@ class ICSImporter
 {
     public function import(string $csvFile)
     {
-        $vcalendar = VObject\Reader::read(fopen($csvFile, 'r'));
+        $vcalendar = VObject\Reader::read(fopen($csvFile, 'rb'));
 
         $calendar = new CalendarModel($vcalendar->PRODID->getValue(), $vcalendar->VERSION->getValue());
         $calendar->setScale(null !== $vcalendar->CALSCALE ? $vcalendar->CALSCALE->getValue() : null);
