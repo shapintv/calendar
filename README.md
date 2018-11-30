@@ -20,7 +20,7 @@ $ composer require shapintv/calendar
 Import a ICS file
 
 ``` php
-$calendar = (new ICSImporter())->import('path/to/csv.csv');
+$calendar = (new ICSImporter())->import('path/to/calendar.ics');
 ```
 
 ## License
