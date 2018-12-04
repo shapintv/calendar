@@ -7,7 +7,6 @@ namespace Shapin\Calendar;
 use Sabre\VObject;
 use Shapin\Calendar\Model\Calendar as CalendarModel;
 use Shapin\Calendar\Model\Event;
-use Shapin\Calendar\Model\Timezone;
 
 class ICSImporter
 {
@@ -15,16 +14,19 @@ class ICSImporter
     {
         $vcalendar = VObject\Reader::read(fopen($csvFile, 'rb'));
 
-        $calendar = new CalendarModel($vcalendar->PRODID->getValue(), $vcalendar->VERSION->getValue());
-        $calendar->setScale(null !== $vcalendar->CALSCALE ? $vcalendar->CALSCALE->getValue() : null);
-        $calendar->setMethod(null !== $vcalendar->METHOD ? $vcalendar->METHOD->getValue() : null);
+        $calendar = new CalendarModel();
 
-        foreach ($vcalendar->VTIMEZONE as $timezone) {
-            $calendar->addTimezone(new Timezone($timezone->TZID->getValue()));
-        }
+        foreach ($vcalendar->VEVENT as $vevent) {
+            $event = new Event($vevent->UID->getValue());
+            $event
+                ->setUid($vevent->UID->getValue())
+                ->setSummary($vevent->SUMMARY->getValue())
+                ->setDescription($vevent->DESCRIPTION->getValue())
+                ->setStartAt($vevent->DTSTART->getDateTime())
+                ->setEndAt($vevent->DTEND->getDateTime())
+            ;
 
-        foreach ($vcalendar->VEVENT as $event) {
-            $calendar->addEvent(new Event($event->UID->getValue()));
+            $calendar->addEvent($event);
         }
 
         return $calendar;
