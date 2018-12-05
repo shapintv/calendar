@@ -6,22 +6,36 @@ namespace Shapin\Calendar\Model;
 
 class Event
 {
-    private $uid;
     private $startAt;
     private $endAt;
     private $summary;
     private $description;
+    private $recurrenceRule;
+    private $recurrenceId;
 
-    public function getUid(): string
+    public function __construct(\DateTimeImmutable $startAt, \DateTimeImmutable $endAt)
     {
-        return $this->uid;
+        $this->startAt = $startAt;
+        $this->endAt = $endAt;
     }
 
-    public function setUid(string $uid): self
+    public function isRecurring(): bool
     {
-        $this->uid = $uid;
+        return null !== $this->recurrenceRule;
+    }
 
-        return $this;
+    public function isARecurrence(): bool
+    {
+        return null !== $this->recurrenceId;
+    }
+
+    public function getLastEventStartAt(): \DateTimeImmutable
+    {
+        if (!$this->isRecurring()) {
+            throw new \BadMethodCallException('Not a recurring event');
+        }
+
+        return $this->getRecurrenceRule()->getLastEvent($this->getStartAt());
     }
 
     public function getStartAt(): ?\DateTimeImmutable
@@ -29,23 +43,9 @@ class Event
         return $this->startAt;
     }
 
-    public function setStartAt(\DateTimeImmutable $startAt): self
-    {
-        $this->startAt = $startAt;
-
-        return $this;
-    }
-
     public function getEndAt(): ?\DateTimeImmutable
     {
         return $this->endAt;
-    }
-
-    public function setEndAt(\DateTimeImmutable $endAt): self
-    {
-        $this->endAt = $endAt;
-
-        return $this;
     }
 
     public function getSummary(): ?string
@@ -68,6 +68,30 @@ class Event
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getRecurrenceRule(): ?RecurrenceRule
+    {
+        return $this->recurrenceRule;
+    }
+
+    public function setRecurrenceRule(RecurrenceRule $recurrenceRule): self
+    {
+        $this->recurrenceRule = $recurrenceRule;
+
+        return $this;
+    }
+
+    public function getRecurrenceId(): ?\DateTimeImmutable
+    {
+        return $this->recurrenceId;
+    }
+
+    public function setRecurrenceId(\DateTimeImmutable $recurrenceId): self
+    {
+        $this->recurrenceId = $recurrenceId;
 
         return $this;
     }

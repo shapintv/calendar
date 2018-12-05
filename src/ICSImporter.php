@@ -7,6 +7,7 @@ namespace Shapin\Calendar;
 use Sabre\VObject;
 use Shapin\Calendar\Model\Calendar as CalendarModel;
 use Shapin\Calendar\Model\Event;
+use Shapin\Calendar\Model\RecurrenceRule;
 
 class ICSImporter
 {
@@ -17,14 +18,17 @@ class ICSImporter
         $calendar = new CalendarModel();
 
         foreach ($vcalendar->VEVENT as $vevent) {
-            $event = new Event($vevent->UID->getValue());
+            $event = new Event($vevent->DTSTART->getDateTime(), $vevent->DTEND->getDateTime());
             $event
-                ->setUid($vevent->UID->getValue())
                 ->setSummary($vevent->SUMMARY->getValue())
                 ->setDescription($vevent->DESCRIPTION->getValue())
-                ->setStartAt($vevent->DTSTART->getDateTime())
-                ->setEndAt($vevent->DTEND->getDateTime())
             ;
+
+            if (isset($vevent->RRULE)) {
+                $event->setRecurrenceRule(RecurrenceRule::createFromArray($vevent->RRULE->getParts()));
+            } elseif (isset($vevent->{'RECURRENCE-ID'})) {
+                $event->setRecurrenceId($vevent->{'RECURRENCE-ID'}->getDateTime());
+            }
 
             $calendar->addEvent($event);
         }
