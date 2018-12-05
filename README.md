@@ -12,7 +12,7 @@
 Via Composer
 
 ``` bash
-$ composer require shapintv/calendar
+$ composer require shapin/calendar
 ```
 
 ## Usage
