@@ -53,6 +53,8 @@ class Calendar
             $events[$event->getRecurrenceId()->getTimestamp()] = $event;
         }
 
+        ksort($events);
+
         return $events;
     }
 
