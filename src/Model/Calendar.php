@@ -58,6 +58,11 @@ class Calendar
         return $events;
     }
 
+    public function hasEvents(): bool
+    {
+        return 0 < count($this->events);
+    }
+
     public function addEvent(Event $event): self
     {
         $this->events[] = $event;
