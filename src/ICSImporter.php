@@ -11,9 +11,14 @@ use Shapin\Calendar\Model\RecurrenceRule;
 
 class ICSImporter
 {
-    public function import(string $csvFile)
+    public function importFromFile(string $csvFile)
     {
-        $vcalendar = VObject\Reader::read(fopen($csvFile, 'rb'));
+        return $this->importFromString(file_get_contents($csvFile));
+    }
+
+    public function importFromString(string $string)
+    {
+        $vcalendar = VObject\Reader::read($string);
 
         $calendar = new CalendarModel();
 

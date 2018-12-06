@@ -14,7 +14,7 @@ class ICSImporterTest extends TestCase
     {
         $importer = new ICSImporter();
 
-        $calendar = $importer->import(__DIR__.'/fixtures/basic.ics');
+        $calendar = $importer->importFromFile(__DIR__.'/fixtures/basic.ics');
         $this->assertInstanceOf(Calendar::class, $calendar);
         $this->assertCount(3, $calendar->getEvents());
         $this->assertCount(18, $calendar->getFlattenedEvents());
@@ -24,7 +24,7 @@ class ICSImporterTest extends TestCase
     {
         $importer = new ICSImporter();
 
-        $calendar = $importer->import(__DIR__.'/fixtures/modified_recurring_events.ics');
+        $calendar = $importer->importFromFile(__DIR__.'/fixtures/modified_recurring_events.ics');
         $this->assertInstanceOf(Calendar::class, $calendar);
         $this->assertCount(6, $calendar->getEvents());
         $this->assertCount(18, $calendar->getFlattenedEvents());
@@ -34,7 +34,7 @@ class ICSImporterTest extends TestCase
     {
         $importer = new ICSImporter();
 
-        $calendar = $importer->import(__DIR__.'/fixtures/updated_monthly_recurring_events.ics');
+        $calendar = $importer->importFromFile(__DIR__.'/fixtures/updated_monthly_recurring_events.ics');
         $this->assertInstanceOf(Calendar::class, $calendar);
         $this->assertCount(2, $calendar->getEvents());
         $this->assertCount(3, $calendar->getFlattenedEvents());
