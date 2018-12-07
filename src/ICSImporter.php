@@ -22,6 +22,10 @@ class ICSImporter
 
         $calendar = new CalendarModel();
 
+        if (!isset($vcalendar->VEVENT)) {
+            return $calendar;
+        }
+
         foreach ($vcalendar->VEVENT as $vevent) {
             $event = new Event($vevent->DTSTART->getDateTime(), $vevent->DTEND->getDateTime());
             $event

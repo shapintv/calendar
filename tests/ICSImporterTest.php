@@ -10,6 +10,17 @@ use Shapin\Calendar\Model\Calendar;
 
 class ICSImporterTest extends TestCase
 {
+    public function testImportEmpty()
+    {
+        $importer = new ICSImporter();
+
+        $calendar = $importer->importFromFile(__DIR__.'/fixtures/empty.ics');
+        $this->assertInstanceOf(Calendar::class, $calendar);
+        $this->assertFalse($calendar->hasEvents());
+        $this->assertCount(0, $calendar->getEvents());
+        $this->assertCount(0, $calendar->getFlattenedEvents());
+    }
+
     public function testImportBasic()
     {
         $importer = new ICSImporter();
