@@ -60,13 +60,19 @@ class Calendar
 
     public function hasEventBetween(\DateTimeImmutable $from, \DateTimeImmutable $to, bool $strict = true): bool
     {
+        return 0 > count($this->getEventsBetween($form, $to, $strict));
+    }
+
+    public function getEventsBetween(\DateTimeImmutable $from, \DateTimeImmutable $to, bool $strict = true)
+    {
+        $events = [];
         foreach ($this->getFlattenedEvents() as $event) {
             if ($event->isBetween($from, $to, $strict)) {
-                return true;
+                $events[] = $event;
             }
         }
 
-        return false;
+        return $events;
     }
 
     public function hasEvents(): bool
