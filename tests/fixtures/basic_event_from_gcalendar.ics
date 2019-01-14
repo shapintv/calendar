@@ -1,0 +1,32 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VEVENT
+DTSTART:20190114T113000Z
+DTEND:20190114T124500Z
+DTSTAMP:20190109T154344Z
+ORGANIZER;CN=thomas@mail.com:mailto:thomas@mail.com
+UID:6lljm7d74oruirpaj3fd0u61ge@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=TRUE
+ ;CN=thomas@mail.com;X-NUM-GUESTS=0:mailto:thomas@mail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=olivier@mail.com;X-NUM-GUESTS=0:mailto:olivier@mail.com
+CLASS:PRIVATE
+CREATED:20190109T154342Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nPlease do not edit this section of the descriptio
+ n.\n\nView your event at https://www.google.com/calendar/event?action=VIEW&
+ eid=Nmxsam03ZDc0b3J1aXJwYWozZmQwdTYxZ2Ugb2xpdmllckBzaGFwaW4uZnI&tok=MjAjdGh
+ vbWFzLjRmbUBnbWFpbC5jb201NzhmMWZmMGUxNTk4MmU5NGViOGUzNDE1MDhiYzIwNDcwZTA4ZW
+ U5&ctz=Europe%2FParis&hl=en_GB&es=1.\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20190109T154343Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Let's play babyfoot
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

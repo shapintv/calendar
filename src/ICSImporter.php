@@ -39,6 +39,10 @@ class ICSImporter
                 $event->setRecurrenceId($vevent->{'RECURRENCE-ID'}->getDateTime());
             }
 
+            if (isset($vevent->CLASS)) {
+                $event->setClassification($vevent->CLASS->getValue());
+            }
+
             $calendar->addEvent($event);
         }
 

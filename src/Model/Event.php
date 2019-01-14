@@ -12,6 +12,7 @@ class Event
     private $description;
     private $recurrenceRule;
     private $recurrenceId;
+    private $classification;
 
     public function __construct(\DateTimeImmutable $startAt, \DateTimeImmutable $endAt)
     {
@@ -111,5 +112,31 @@ class Event
         $this->recurrenceId = $recurrenceId;
 
         return $this;
+    }
+
+    public function getClassification(): ?string
+    {
+        return $this->classification;
+    }
+
+    public function setClassification(string $classification): self
+    {
+        $this->classification = $classification;
+
+        return $this;
+    }
+
+    public function isPrivate()
+    {
+        return 'PRIVATE' === $this->classification;
+    }
+
+    /**
+     * Public by default
+     * @see https://tools.ietf.org/html/rfc5545#section-3.8.1.3
+     */
+    public function isPublic()
+    {
+        return 'PUBLIC' === $this->classification || null === $this->classification;
     }
 }

@@ -32,6 +32,22 @@ class ICSImporterTest extends TestCase
         $this->assertCount(18, $calendar->getFlattenedEvents());
     }
 
+    public function testImportBasicEventFromGCalendar()
+    {
+        $importer = new ICSImporter();
+
+        $calendar = $importer->importFromFile(__DIR__.'/fixtures/basic_event_from_gcalendar.ics');
+        $this->assertInstanceOf(Calendar::class, $calendar);
+        $this->assertTrue($calendar->hasEvents());
+        $this->assertCount(1, $calendar->getEvents());
+
+        $events = $calendar->getEvents();
+        $event = reset($events);
+        $this->assertEquals('Let\'s play babyfoot', $event->getSummary());
+        $this->assertTrue($event->isPrivate());
+        $this->assertFalse($event->isPublic());
+    }
+
     public function testImportModifiedRecurringEvents()
     {
         $importer = new ICSImporter();
