@@ -29,6 +29,23 @@ class Event
         return null !== $this->recurrenceId;
     }
 
+    public function isBetween(\DateTimeImmutable $from, \DateTimeImmutable $to, bool $strict = true): bool
+    {
+        if ($strict) {
+            return $this->startAt > $from && $this->endAt < $to;
+        }
+
+        if ($this->endAt < $from) {
+            return false;
+        }
+
+        if ($this->startAt > $to) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function getLastEventStartAt(): \DateTimeImmutable
     {
         if (!$this->isRecurring()) {

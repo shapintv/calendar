@@ -58,6 +58,17 @@ class Calendar
         return $events;
     }
 
+    public function hasEventBetween(\DateTimeImmutable $from, \DateTimeImmutable $to, bool $strict = true): bool
+    {
+        foreach ($this->getFlattenedEvents() as $event) {
+            if ($event->isBetween($from, $to, $strict)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function hasEvents(): bool
     {
         return 0 < count($this->events);
