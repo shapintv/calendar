@@ -50,4 +50,9 @@ class RecurrenceRule
 
         throw new \BadMethodCallException('Not implemented recurring rule.');
     }
+
+    public function getParts(): array
+    {
+        return $this->parts;
+    }
 }

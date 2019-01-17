@@ -23,6 +23,10 @@ class ICSExporter
             $data['CLASS'] = $event->getClassification();
         }
 
+        if ($event->isRecurring()) {
+            $data['RRULE'] = $event->getRecurrenceRule()->getParts();
+        }
+
         $vcalendar = new VObject\Component\VCalendar([
             'VEVENT' => $data,
         ]);

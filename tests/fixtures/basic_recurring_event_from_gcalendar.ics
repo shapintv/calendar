@@ -1,0 +1,57 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:Europe/Paris
+X-LIC-LOCATION:Europe/Paris
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=Europe/Paris:20190123T100000
+DTEND;TZID=Europe/Paris:20190123T103000
+RRULE:FREQ=WEEKLY;BYDAY=WE
+DTSTAMP:20190117T080737Z
+ORGANIZER;CN=olivier@shapin.fr:mailto:olivier@shapin.fr
+UID:4agdd23grroe2d864gtrp0h69h@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=olivier@bbnt.me;X-NUM-GUESTS=0:mailto:olivier@bbnt.me
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=TRUE
+ ;CN=olivier@shapin.fr;X-NUM-GUESTS=0:mailto:olivier@shapin.fr
+CREATED:20190117T080511Z
+DESCRIPTION:This is an amazing description.\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:
+ ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\nPlease do not 
+ edit this section of the description.\n\nThis event has a video call.\nJoin
+ : https://meet.google.com/twj-mytm-bhy\n+1 570-415-1148 PIN: 550848522#\n\n
+ View your event at https://www.google.com/calendar/event?action=VIEW&eid=NG
+ FnZGQyM2dycm9lMmQ4NjRndHJwMGg2OWggb2xpdmllckBiYm50Lm1l&tok=MTcjb2xpdmllckBz
+ aGFwaW4uZnJjZGZiY2ViNjEwZTcyNTIwNjU0ZjE4OTQyMzM1MmU2YTMxOTM0NGYy&ctz=Europe
+ %2FParis&hl=en_GB&es=1.\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:
+ ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20190117T080736Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Recurring event
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:This is an event reminder
+TRIGGER:-P0DT0H30M0S
+END:VALARM
+END:VEVENT
+END:VCALENDAR
