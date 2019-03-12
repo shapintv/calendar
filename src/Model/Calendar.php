@@ -75,6 +75,25 @@ class Calendar
         return $events;
     }
 
+    public function getNextEvent(): ?Event
+    {
+        if (!$this->hasEvents()) {
+            return null;
+        }
+
+        $now = new \DateTimeImmutable();
+
+        // Flattened events are ordered by date. As soon as we found an event
+        // starting after $now, we can return it directly.
+        foreach ($this->getFlattenedEvents() as $event) {
+            if ($event->getStartAt() > $now) {
+                return $event;
+            }
+        }
+
+        return null;
+    }
+
     public function hasEvents(): bool
     {
         return 0 < count($this->events);
