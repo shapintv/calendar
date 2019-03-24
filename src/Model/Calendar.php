@@ -74,7 +74,7 @@ class Calendar
         return null;
     }
 
-    public function getUpcomingEvents(): ?Event
+    public function getUpcomingEvents(): array
     {
         if (!$this->hasEvents()) {
             return null;
