@@ -14,6 +14,10 @@ class RecurrenceRule
 
     public static function createFromArray(array $parts): self
     {
+        if (array_key_exists('UNTIL', $parts) && is_string($parts['UNTIL'])) {
+            $parts['UNTIL'] = new \DateTimeImmutable($parts['UNTIL']);
+        }
+
         $rule = new self();
         $rule->parts = $parts;
 
@@ -36,19 +40,6 @@ class RecurrenceRule
         }
 
         throw new \BadMethodCallException("Unknown freq $freq");
-    }
-
-    public function getLastEvent(\DateTimeImmutable $firstEventStartAt): \DateTimeImmutable
-    {
-        if (isset($this->parts['UNTIL'])) {
-            return new \DateTimeImmutable($this->parts['UNTIL']);
-        }
-
-        if (isset($this->parts['COUNT'])) {
-            return $firstEventStartAt->modify($this->getModifier((int) $this->parts['COUNT']));
-        }
-
-        throw new \BadMethodCallException('Not implemented recurring rule.');
     }
 
     public function getParts(): array

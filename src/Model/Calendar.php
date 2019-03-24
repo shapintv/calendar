@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace Shapin\Calendar\Model;
 
+use Shapin\Calendar\EventsFlattener;
+
 class Calendar
 {
     private $events = [];
 
     public function getFlattenedEvents(): array
     {
+        $flattener = new EventsFlattener();
+
         $events = [];
         $eventsInARecurrence = [];
         $recurringEvents = [];
@@ -22,6 +26,8 @@ class Calendar
 
             if ($event->isRecurring()) {
                 $recurringEvents[] = $event;
+
+                continue;
             }
 
             $events[$event->getStartAt()->getTimestamp()] = $event;
@@ -29,23 +35,7 @@ class Calendar
 
         // Deal with recurring events
         foreach ($recurringEvents as $event) {
-            $startAt = $event->getStartAt();
-            $duration = $event->getEndAt()->diff($startAt);
-            $modifier = $event->getRecurrenceRule()->getModifier();
-
-            $until = $event->getLastEventStartAt();
-            $nextEventStartAt = $startAt->modify($modifier);
-            while ($nextEventStartAt < $until) {
-                $newEvent = new Event(
-                    $nextEventStartAt,
-                    $nextEventStartAt->add($duration)
-                );
-                $newEvent->setSummary($event->getSummary());
-                $newEvent->setDescription($event->getDescription());
-
-                $events[$newEvent->getStartAt()->getTimestamp()] = $newEvent;
-                $nextEventStartAt = $nextEventStartAt->modify($modifier);
-            }
+            $events += $flattener->flatten($event);
         }
 
         // Replace recurring events with updated ones

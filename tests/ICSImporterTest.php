@@ -69,4 +69,15 @@ class ICSImporterTest extends TestCase
         $this->assertCount(2, $calendar->getEvents());
         $this->assertCount(3, $calendar->getFlattenedEvents());
     }
+
+    public function testImportTwoTimesAWeekEvents()
+    {
+        $importer = new ICSImporter();
+
+        $calendar = $importer->importFromFile(__DIR__.'/fixtures/recurring_event_2_times_per_week.ics');
+        $this->assertInstanceOf(Calendar::class, $calendar);
+        $this->assertTrue($calendar->hasEvents());
+        $this->assertCount(1, $calendar->getEvents());
+        $this->assertCount(44, $calendar->getFlattenedEvents());
+    }
 }

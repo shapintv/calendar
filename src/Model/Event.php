@@ -47,15 +47,6 @@ class Event
         return true;
     }
 
-    public function getLastEventStartAt(): \DateTimeImmutable
-    {
-        if (!$this->isRecurring()) {
-            throw new \BadMethodCallException('Not a recurring event');
-        }
-
-        return $this->getRecurrenceRule()->getLastEvent($this->getStartAt());
-    }
-
     public function getStartAt(): ?\DateTimeImmutable
     {
         return $this->startAt;
