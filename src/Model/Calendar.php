@@ -77,7 +77,7 @@ class Calendar
     public function getUpcomingEvents(): array
     {
         if (!$this->hasEvents()) {
-            return null;
+            return [];
         }
 
         $now = new \DateTimeImmutable();
