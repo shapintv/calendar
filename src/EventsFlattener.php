@@ -88,7 +88,7 @@ class EventsFlattener
         $firstEventStartAt = $event->getStartAt();
 
         if (isset($parts['UNTIL'])) {
-            return $parts['UNTIL'];
+            return new \DateTimeImmutable($parts['UNTIL']);
         }
 
         if (isset($parts['COUNT'])) {

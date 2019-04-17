@@ -14,10 +14,6 @@ class RecurrenceRule
 
     public static function createFromArray(array $parts): self
     {
-        if (array_key_exists('UNTIL', $parts) && is_string($parts['UNTIL'])) {
-            $parts['UNTIL'] = new \DateTimeImmutable($parts['UNTIL']);
-        }
-
         $rule = new self();
         $rule->parts = $parts;
 
