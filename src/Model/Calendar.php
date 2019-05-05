@@ -67,11 +67,13 @@ class Calendar
 
     public function getNextEvent(): ?Event
     {
-        if (null !== $nextEvents = $this->getUpcomingEvents()) {
-            return reset($nextEvents);
+        $nextEvents = $this->getUpcomingEvents();
+
+        if (0 === count($nextEvents)) {
+            return null;
         }
 
-        return null;
+        return reset($nextEvents);
     }
 
     public function getUpcomingEvents(): array
