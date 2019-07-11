@@ -78,15 +78,18 @@ class Calendar
 
     public function getUpcomingEvents(): array
     {
+        return $this->getEventsAfter(new \DateTimeImmutable());
+    }
+
+    public function getEventsAfter(\DateTimeInterface $date): array
+    {
         if (!$this->hasEvents()) {
             return [];
         }
 
-        $now = new \DateTimeImmutable();
-
         $events = [];
         foreach ($this->getFlattenedEvents() as $event) {
-            if ($event->getStartAt() > $now) {
+            if ($event->getStartAt() > $date) {
                 $events[] = $event;
             }
         }
